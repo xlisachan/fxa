@@ -147,6 +147,42 @@ This saves the HTML template into `/templates`. Then make changes to the `.txt` 
 After updating a string in one of the templates in `./mailer/templates` you'll need to extract the strings.
 Follow the instructions at [mozilla/fxa-content-server-l10n](https://github.com/mozilla/fxa-content-server-l10n#string-extraction).
 
+### 2021 Template Updates
+
+In 2021, FxA began converting the email templating system from Mustache, inline CSS, and GetText to a modernized stack using MJML, EJS, Fluent, and Storybook ([see the ADR](https://github.com/mozilla/fxa/blob/main/docs/adr/0024-upgrade-templating-toolset-of-auth-server-emails.md)). Until each template has been converted and verified by QA, the old system described above will be used for emails in production.
+
+#### MJML Feature Flag for Testing
+
+The auth-server has an `mjml` configuration value that designates which email templates have been converted to the new stack (`mjml.templates` array) and controls which user emails will receive those templates (`mjml.enabledEmailAddress` regex). The auth-server exposes a feature flag method to check these values and send the correct rendered template accordingly (old or new) which allows for testing across environments.
+
+This flag and logic around it can be removed, as well as old templates and documentation, once all templates have been converted, verified by QA, and tested in production.
+
+#### MJML and EJS
+
+- one or two sentences on what MJML does for us and why we need EJS
+- would be nice to have a small example of how variables are passed down from the mailer into the templates
+
+#### Styles
+
+Note: it may be helpful to go through the comments in the CSS PR to help fill this out
+
+- mention that MJML inlines styles at the build step which is necessary for emails
+- explain using Tailwind-like classes and variables as well as using the closest px value to the fxa-settings design guide for consistency across FxA's CSS
+- explain the global styles containing variables and shared classes, and preferring partial or template-specific styles when styles are scoped to the partial/template
+- mention the use of `!important` is sometimes needed to overwrite MJML/email client styles
+- that styling classes is not always how it seems due to how MJML compiles our templates and you may need to add `div` or `td` after the class
+- explain using the FxA guideline
+
+#### l10n (Fluent)
+
+- TODO, once the Fluent PR is merged and patten set, explain how to localize in the new templates
+- also mention the LTR/RTL text direction
+
+#### Storybook and Documentation
+
+- Brief description of using Storybook for email previewing and development (and how we render MJML to HTML for Storybook), with the caveat that they are HTML emails rendered in-browser meaning they may not exactly match what users will see in an email client
+- Each template has an optional `doc` string that serves to document what
+
 #### Production
 
 Use the `FXA_L10N_SHA` to pin L10N files to certain SHA. If not set then the `master` SHA will be used.
