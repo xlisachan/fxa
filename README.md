@@ -15,7 +15,6 @@ The Firefox Accounts (fxa) monorepo
 [Firefox Custom Profile](#firefox-custom-profile)\
 [Node debugging](#node-debugging)\
 [Android debugging](#android-debugging)\
-[FxA Email Service](#fxa-email-service)\
 [Connecting to a local MySQL DB](#connecting-to-a-local-mysql-db)\
 [Firefox for iOS](#firefox-for-ios)\
 [Running with MailDev](#running-with-maildev)\
@@ -191,25 +190,6 @@ nvm alias default 14
 
 Download from [java.com/en/download/](https://www.java.com/en/download/)
 
-#### Installing Rust
-
-> Rust Nightly is used for the fxa-email-service
-
-##### Ubuntu and OS X
-
-```
-curl https://sh.rustup.rs -sSf | sh
-```
-
-Once the installer begins, when prompted:
-
-1. Select "2) Customize installation"
-2. Leave "Default host triple" blank, hit "enter"
-3. Type "nightly" for "Default toolchain"
-4. Type "default" for "Profile"
-5. Type "y" for "Modify PATH variable?"
-6. Select "1) Proceed with installation"
-
 ---
 
 ### Secrets
@@ -236,9 +216,6 @@ From the root directory you may test all or some FxA packages:
 ```bash
 # Test only `fxa-shared`
 yarn test fxa-shared
-
-# Test `fxa-auth-db-mysql` and `fxa-auth-server`
-yarn test fxa-auth-db-mysql fxa-auth-server
 
 # Test all packages
 yarn test all
@@ -381,19 +358,6 @@ Then run `yarn start` and get to work!
 
 ---
 
-### FxA Email Service
-
-> Skip this if you are not working on the [fxa-email-service](packages/fxa-email-service).
-
-The pm2 scripts run the `latest` docker version of the email service by default. If you want to
-start making changes to the email service then do the following:
-
-1. Stop the email-service using `yarn pm2 stop <email_service_id>`
-1. Build the service: `cd packages/fxa-email-service; cargo build --bin fxa_email_send`
-1. Run the service: `cd packages/fxa-email-service; ./scripts/run_send.sh`
-
----
-
 ### Connecting to a local MySQL DB
 
 > Skip this if you are not working on an FxA MySQL database.
@@ -482,17 +446,13 @@ In addition to the ecosystem docs, each package has it's own README.md and some 
 - fxa-admin-panel [README](./packages/fxa-admin-panel/README.md)
 - fxa-admin-server [README](./packages/fxa-admin-server/README.md)
 - fxa-auth-client [README](./packages/fxa-auth-client/README.md)
-- fxa-auth-db-mysql [README](./packages/fxa-auth-db-mysql/README.md) / [docs/](./packages/fxa-auth-db-mysql/docs)
 - fxa-auth-server [README](./packages/fxa-auth-server/README.md) / [docs/](./packages/fxa-auth-server/docs)
 - fxa-content-server [README](./packages/fxa-content-server/README.md) / [docs/](./packages/fxa-content-server/docs)
 - fxa-customs-server [README](./packages/fxa-content-server/README.md) / [docs/](./packages/fxa-customs-server/docs)
 - fxa-dev-launcher [README](./packages/fxa-dev-launcher/README.md)
-- fxa-email-event-proxy [README](./packages/fxa-email-event-proxy/README.md)
-- fxa-email-service [README](./packages/fxa-email-service/README.md) / [docs/](./packages/fxa-email-service/docs)
 - fxa-event-broker [README](./packages/fxa-event-broker/README.md) / [docs/](./packages/fxa-event-broker/docs)
 - fxa-geodb [README](./packages/fxa-geodb/README.md)
 - fxa-graphql-api [README](./packages/fxa-graphql-api/README.md)
-- fxa-metrics-processor [README](./packages/fxa-metrics-processor/README.md)
 - fxa-payments-server [README](./packages/fxa-payments-server/README.md)
 - fxa-profile-server [README](./packages/fxa-profile-server/README.md) / [docs/](./packages/fxa-profile-server/docs)
 - fxa-react [README](./packages/fxa-react/README.md)
