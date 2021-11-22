@@ -44,7 +44,7 @@ export const GET_ACCOUNT_BY_EMAIL = gql`
         enabled
       }
       sessionTokens {
-        tokenId
+        tokenData
         uid
         createdAt
         uaBrowser
@@ -95,7 +95,7 @@ export const GET_ACCOUNT_BY_UID = gql`
         enabled
       }
       sessionTokens {
-        tokenId
+        tokenData
         uid
         createdAt
         uaBrowser

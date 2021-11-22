@@ -6,9 +6,6 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class SessionTokens {
   @Field({ nullable: true })
-  public tokenId!: string;
-
-  @Field({ nullable: true })
   public tokenData!: string;
 
   @Field({ nullable: true })

@@ -1,5 +1,4 @@
 CREATE TABLE `sessionTokens` (
-  `tokenId` binary(32) NOT NULL,
   `tokenData` binary(32) NOT NULL,
   `uid` binary(16) NOT NULL,
   `createdAt` bigint(20) unsigned NOT NULL,
@@ -14,7 +13,7 @@ CREATE TABLE `sessionTokens` (
   `verificationMethod` int(11) DEFAULT NULL,
   `verifiedAt` bigint(20) DEFAULT NULL,
   `mustVerify` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`tokenId`),
+  PRIMARY KEY (`tokenData`),
   KEY `session_uid` (`uid`),
   KEY `sessionTokens_createdAt` (`createdAt`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci

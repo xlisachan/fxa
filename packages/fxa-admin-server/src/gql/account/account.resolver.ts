@@ -15,7 +15,7 @@ import { MozLoggerService } from 'fxa-shared/nestjs/logger/logger.service';
 import { CurrentUser } from '../../auth/auth-header.decorator';
 import { GqlAuthHeaderGuard } from '../../auth/auth-header.guard';
 import { DatabaseService } from '../../database/database.service';
-import { Account } from '../../database/model';
+import { Account } from 'fxa-shared/db/models/auth';
 import { uuidTransformer } from '../../database/transformers';
 import { Account as AccountType } from '../../gql/model/account.model';
 import { Email as EmailType } from '../../gql/model/emails.model';
@@ -41,7 +41,7 @@ const SECURITY_EVENTS_COLUMNS = ['uid', 'verified', 'createdAt'];
 const TOTP_COLUMNS = ['uid', 'epoch', 'createdAt', 'verified', 'enabled'];
 const RECOVERYKEY_COLUMNS = ['uid', 'createdAt', 'verifiedAt', 'enabled'];
 const SESSIONTOKEN_COLUMNS = [
-  'tokenId',
+  'tokenData',
   'uid',
   'createdAt',
   'uaBrowser',

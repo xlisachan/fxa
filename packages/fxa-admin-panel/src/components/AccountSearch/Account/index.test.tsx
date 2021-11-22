@@ -40,7 +40,6 @@ let accountResponse: AccountProps = {
   ],
   sessionTokens: [
     {
-      tokenId: 'abcd1234',
       tokenData: 'abcd1234',
       uid: 'ca1c61239f2448b2af618f0b50226cde',
       createdAt: 1589467100316,

@@ -64,7 +64,6 @@ type RecoveryKeys {
 }
 
 type SessionTokens {
-  tokenId: String
   tokenData: String
   uid: String
   createdAt: Float

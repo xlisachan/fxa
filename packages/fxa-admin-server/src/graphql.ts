@@ -69,7 +69,6 @@ export interface RecoveryKeys {
 }
 
 export interface SessionTokens {
-    tokenId?: Nullable<string>;
     tokenData?: Nullable<string>;
     uid?: Nullable<string>;
     createdAt?: Nullable<number>;
